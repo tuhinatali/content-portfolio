@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tuhina Tali · LinkedIn Ghostwriter & Carousel Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pl:'Playfair Display',serif;
+  --bar:'Barlow',sans-serif;
+  --bc:'Barlow Condensed',sans-serif;
+  --black:#0A0A0A;
+  --off:#F7F5F0;
+  --cream:#EDEAE2;
+  --accent:#C9F03E;
+  --accent2:#FF4D2E;
+  --muted:#7A7A72;
+  --card:#fff;
+  --border:#DEDAD2;
+}
+html{scroll-behavior:smooth}
+body{background:var(--off);font-family:var(--bar);color:var(--black);overflow-x:hidden}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:.9rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(247,245,240,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--pl);font-size:18px;font-weight:900;letter-spacing:-.3px}
+.nav-logo span{color:var(--accent2)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--black)}
+.nav-cta{
+  background:var(--black);color:#fff;
+  font-family:var(--bc);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:9px 20px;border-radius:2px;text-decoration:none;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+@media(max-width:600px){.nav-links{display:none}}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding-top:60px;
+  position:relative;
+}
+@media(max-width:700px){.hero{grid-template-columns:1fr;min-height:auto}}
+
+.hero-left{
+  padding:5rem 3rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--border);
+  position:relative;z-index:1;
+}
+.hero-eyebrow{
+  font-family:var(--bc);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--accent2)}
+.hero-h1{
+  font-family:var(--pl);font-size:clamp(48px,7vw,80px);
+  font-weight:900;line-height:.95;letter-spacing:-2px;
+  margin-bottom:2rem;
+}
+.hero-h1 em{font-style:italic;color:var(--accent2)}
+.hero-desc{
+  font-size:15px;font-weight:300;color:var(--muted);
+  line-height:1.8;max-width:380px;margin-bottom:2.5rem;
+}
+.hero-desc strong{color:var(--black);font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:3rem}
+.btn-main{
+  background:var(--black);color:#fff;
+  font-family:var(--bc);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:14px 28px;border-radius:2px;text-decoration:none;
+  transition:background .2s,transform .1s;display:inline-block;
+}
+.btn-main:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-out{
+  background:transparent;color:var(--black);
+  font-family:var(--bc);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:14px 28px;border-radius:2px;text-decoration:none;
+  border:1.5px solid var(--black);
+  transition:all .2s;display:inline-block;
+}
+.btn-out:hover{background:var(--black);color:#fff}
+.hero-social{display:flex;gap:20px}
+.hero-social a{
+  font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color .2s;display:flex;align-items:center;gap:6px;
+}
+.hero-social a:hover{color:var(--black)}
+.hero-social a::after{content:'↗';font-size:10px}
+
+.hero-right{
+  background:var(--black);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:4rem 3rem 3rem;
+  position:relative;overflow:hidden;
+}
+.hero-right-bg{
+  position:absolute;inset:0;
+  background: radial-gradient(ellipse at 70% 20%, rgba(201,240,62,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(255,77,46,0.1) 0%, transparent 50%);
+}
+.hero-tag-stack{position:relative;z-index:1;margin-bottom:auto;padding-top:2rem}
+.big-tag{
+  font-family:var(--pl);font-size:clamp(28px,4vw,42px);font-weight:700;font-style:italic;
+  color:rgba(255,255,255,0.12);line-height:1.3;
+  display:block;
+}
+.big-tag.active{color:rgba(255,255,255,0.9)}
+.big-tag.semi{color:rgba(255,255,255,0.35)}
+.hero-stats{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:2rem;margin-top:2rem;
+}
+.h-stat-n{font-family:var(--pl);font-size:36px;font-weight:900;color:var(--accent);line-height:1}
+.h-stat-l{font-size:11px;font-weight:400;color:rgba(255,255,255,0.5);margin-top:4px;letter-spacing:.5px}
+@media(max-width:700px){
+  .hero-left{padding:4rem 1.5rem 2rem}
+  .hero-right{padding:3rem 1.5rem;min-height:340px}
+}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap{
+  background:var(--accent2);
+  padding:.6rem 0;overflow:hidden;
+  border-top:1px solid var(--black);border-bottom:1px solid var(--black);
+}
+.marquee-track{
+  display:flex;gap:0;
+  animation:marquee 20s linear infinite;
+  width:max-content;
+}
+.marquee-track span{
+  font-family:var(--bc);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#fff;padding:0 2rem;white-space:nowrap;
+}
+.marquee-track span.dot{color:rgba(255,255,255,0.5);padding:0 .5rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SECTION LAYOUT ─── */
+section{position:relative;z-index:1}
+.sec-wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+@media(max-width:600px){.sec-wrap{padding:3.5rem 1.25rem}}
+
+.sec-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:3rem;
+  border-bottom:1px solid var(--border);padding-bottom:1rem;
+  flex-wrap:wrap;gap:1rem;
+}
+.sec-title{font-family:var(--pl);font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-1px}
+.sec-label{
+  font-family:var(--bc);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ─── SERVICES ─── */
+#services{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+@media(max-width:640px){.svcs{grid-template-columns:1fr}}
+.svc{
+  padding:2.5rem 2rem;
+  border-right:1px solid var(--border);
+  transition:background .2s;
+}
+.svc:last-child{border-right:none}
+.svc:hover{background:var(--off)}
+@media(max-width:640px){.svc{border-right:none;border-bottom:1px solid var(--border)}}
+.svc-num{
+  font-family:var(--pl);font-size:48px;font-weight:900;
+  color:var(--border);line-height:1;margin-bottom:1rem;
+}
+.svc-t{font-family:var(--pl);font-size:22px;font-weight:700;margin-bottom:.5rem}
+.svc-d{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.svc-p{
+  font-family:var(--bc);font-size:14px;font-weight:700;letter-spacing:.5px;
+  color:var(--accent2);
+}
+
+/* ─── CAROUSELS ─── */
+#carousels{background:var(--off)}
+.car-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+@media(max-width:640px){.car-grid{grid-template-columns:1fr}}
+
+.car-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+}
+.car-label{
+  padding:.75rem 1rem;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.car-title-sm{font-family:var(--bc);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.car-counter{font-family:var(--bc);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted)}
+
+/* SLIDES CONTAINER */
+.slides-wrap{position:relative;overflow:hidden}
+.slides-track{
+  display:flex;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.slide{
+  min-width:100%;
+  position:relative;
+}
+.slide-inner{
+  aspect-ratio:1/1;
+  display:flex;flex-direction:column;
+  padding:1.75rem;
+  position:relative;overflow:hidden;
+}
+
+/* Carousel 1 - Tobacco */
+.c1 .slide-inner{background:#111100}
+.c1 .s-eyebrow{font-family:var(--bc);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#F5C518;margin-bottom:.75rem;display:inline-block;padding:3px 8px;border:1px solid #F5C518;border-radius:100px}
+.c1 .s-head{font-family:var(--pl);font-size:clamp(20px,3.5vw,28px);font-weight:900;color:#F5C518;line-height:1.1;margin-bottom:.75rem}
+.c1 .s-body{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;flex:1}
+.c1 .s-body strong{color:#fff;font-weight:500}
+.c1 .s-source{font-size:10px;color:rgba(255,255,255,0.3);margin-top:auto;padding-top:.75rem;font-style:italic}
+.c1 .s-stat{font-family:var(--pl);font-size:48px;font-weight:900;color:#F5C518;line-height:1;margin:.5rem 0}
+.c1 .s-stat-l{font-size:12px;color:rgba(255,255,255,0.5)}
+.c1 .s-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.75rem 0}
+.c1 .s-grid-item{background:rgba(255,255,255,0.05);border-radius:4px;padding:.75rem}
+.c1 .s-grid-n{font-family:var(--pl);font-size:26px;font-weight:900;color:#F5C518}
+.c1 .s-grid-l{font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px}
+.c1 .s-grid-d{font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px;line-height:1.4}
+.c1 .tick{color:#F5C518}
+.c1 .cross{color:#ff4444}
+.c1 .pill{display:inline-block;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600}
+.c1 .pill-y{background:rgba(245,197,24,0.15);color:#F5C518}
+.c1 .pill-r{background:rgba(255,68,68,0.15);color:#ff6666}
+.c1 .compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.75rem 0}
+.c1 .compare-side{background:rgba(255,255,255,0.05);padding:.75rem;border-radius:4px}
+.c1 .compare-n{font-family:var(--pl);font-size:32px;font-weight:900}
+.c1 .compare-sub{font-size:10px;color:rgba(255,255,255,0.5);margin:.25rem 0}
+.c1 .compare-d{font-size:10px;color:rgba(255,255,255,0.6);line-height:1.4}
+
+/* Carousel 2 - Economic policy */
+.c2 .slide-inner{background:#F5F0E8}
+.c2 .s-eyebrow{font-family:var(--bc);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8B4513;margin-bottom:.75rem;display:inline-block;padding:3px 8px;border:1px solid #8B4513;border-radius:100px}
+.c2 .s-head{font-family:var(--pl);font-size:clamp(18px,3vw,26px);font-weight:900;color:#1A3A0A;line-height:1.1;margin-bottom:.75rem}
+.c2 .s-body{font-size:13px;color:#555;line-height:1.7;flex:1}
+.c2 .s-body strong{color:#1A3A0A;font-weight:600}
+.c2 .s-source{font-size:10px;color:#aaa;margin-top:auto;padding-top:.75rem;font-style:italic}
+.c2 .silo-item{background:#fff;border-left:3px solid #8B4513;padding:.6rem .85rem;margin:.5rem 0;border-radius:0 4px 4px 0}
+.c2 .silo-t{font-size:12px;font-weight:600;color:#1A3A0A;margin-bottom:2px}
+.c2 .silo-d{font-size:11px;color:#777;line-height:1.4}
+.c2 .callout{background:#1A3A0A;color:#fff;padding:1rem;border-radius:4px;margin:.75rem 0;font-size:13px;font-weight:500;line-height:1.5;font-style:italic}
+.c2 .reform-item{display:flex;gap:.75rem;margin:.5rem 0;align-items:flex-start}
+.c2 .reform-icon{width:28px;height:28px;background:#1A3A0A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+.c2 .reform-text{font-size:12px;color:#444;line-height:1.5}
+.c2 .reform-text strong{color:#1A3A0A}
+
+/* Carousel 3 - Vulnerable women */
+.c3 .slide-inner{background:#FBF5F2}
+.c3 .s-eyebrow{font-family:var(--bc);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C0392B;margin-bottom:.75rem;display:inline-block;padding:3px 8px;border:1px solid #C0392B;border-radius:100px}
+.c3 .s-head{font-family:var(--pl);font-size:clamp(18px,3vw,26px);font-weight:900;color:#1A0A08;line-height:1.1;margin-bottom:.75rem}
+.c3 .s-head em{color:#C0392B;font-style:italic}
+.c3 .s-body{font-size:13px;color:#666;line-height:1.7;flex:1}
+.c3 .s-body strong{color:#1A0A08;font-weight:600}
+.c3 .s-source{font-size:10px;color:#bbb;margin-top:auto;padding-top:.75rem;font-style:italic}
+.c3 .shift-row{display:flex;gap:.5rem;align-items:stretch;margin:.5rem 0}
+.c3 .shift-from{flex:1;background:#F0E6E4;border-radius:4px;padding:.6rem .75rem;font-size:11px;color:#C0392B;font-weight:500}
+.c3 .shift-arrow{display:flex;align-items:center;color:#C0392B;font-size:16px;font-weight:700}
+.c3 .shift-to{flex:1;background:#E4EEE6;border-radius:4px;padding:.6rem .75rem;font-size:11px;color:#1E6B3A;font-weight:500}
+.c3 .bold-q{font-family:var(--pl);font-size:16px;font-weight:700;font-style:italic;color:#1A0A08;line-height:1.4;margin:.75rem 0;padding-left:1rem;border-left:3px solid #C0392B}
+.c3 .action-item{background:#1A0A08;color:#fff;padding:.6rem .85rem;border-radius:4px;margin:.4rem 0;font-size:12px;line-height:1.4}
+.c3 .action-item strong{color:#F5A623}
+
+/* Carousel 4 - Health insurance */
+.c4 .slide-inner{background:#0D1B3E}
+.c4 .s-eyebrow{font-family:var(--bc);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4A9CF6;margin-bottom:.75rem;display:inline-block;padding:3px 8px;border:1px solid #4A9CF6;border-radius:100px}
+.c4 .s-head{font-family:var(--pl);font-size:clamp(18px,3vw,26px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:.75rem}
+.c4 .s-body{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;flex:1}
+.c4 .s-body strong{color:#fff;font-weight:500}
+.c4 .s-source{font-size:10px;color:rgba(255,255,255,0.25);margin-top:auto;padding-top:.75rem;font-style:italic}
+.c4 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.75rem 0}
+.c4 .stat-box{background:rgba(255,255,255,0.06);border-radius:4px;padding:.75rem;text-align:center}
+.c4 .stat-n{font-family:var(--pl);font-size:26px;font-weight:900;color:#4A9CF6;line-height:1}
+.c4 .stat-l{font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px;line-height:1.3}
+.c4 .promise-box{background:rgba(74,156,246,0.1);border:1px solid rgba(74,156,246,0.3);border-radius:4px;padding:.75rem;margin:.4rem 0}
+.c4 .promise-t{font-family:var(--bc);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4A9CF6;margin-bottom:.3rem}
+.c4 .promise-d{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.4}
+.c4 .pitfall-box{background:rgba(255,77,46,0.1);border:1px solid rgba(255,77,46,0.3);border-radius:4px;padding:.75rem;margin:.4rem 0}
+.c4 .pitfall-t{font-family:var(--bc);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF4D2E;margin-bottom:.3rem}
+.c4 .pitfall-d{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.4}
+.c4 .bold-stat{font-family:var(--pl);font-size:36px;font-weight:900;color:#4A9CF6;text-align:center;margin:.5rem 0;line-height:1}
+.c4 .bold-stat-sub{font-size:12px;color:rgba(255,255,255,0.5);text-align:center}
+.c4 .move-item{background:rgba(255,255,255,0.05);border-radius:4px;padding:.6rem .85rem;margin:.4rem 0;font-size:12px;color:rgba(255,255,255,0.75);line-height:1.4;display:flex;gap:.6rem;align-items:flex-start}
+.c4 .move-n{font-family:var(--bc);font-size:14px;font-weight:700;color:#4A9CF6;flex-shrink:0}
+
+/* NAV DOTS & ARROWS */
+.car-controls{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1rem;
+  border-top:1px solid var(--border);
+  background:var(--cream);
+}
+.car-dots{display:flex;gap:6px}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border);cursor:pointer;
+  transition:background .2s, width .2s;
+  border:none;padding:0;
+}
+.dot.on{background:var(--black);width:16px;border-radius:3px}
+.car-arrows{display:flex;gap:8px}
+.car-arr{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--black);color:#fff;
+  border:none;cursor:pointer;
+  font-size:14px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.car-arr:hover{background:var(--accent2)}
+.car-arr:disabled{background:var(--border);cursor:default}
+
+/* ─── GHOSTWRITING ─── */
+#ghostwriting{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.posts{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:640px){.posts{grid-template-columns:1fr}}
+
+.post{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:2rem;
+  position:relative;
+  transition:box-shadow .2s,transform .2s;
+}
+.post:hover{box-shadow:0 12px 32px rgba(0,0,0,.08);transform:translateY(-2px)}
+.post::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.post.p1::before{background:var(--accent2)}
+.post.p2::before{background:#4A9CF6}
+
+.post-persona{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.av{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--bc);font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.pi-name{font-size:13px;font-weight:600;line-height:1.2}
+.pi-role{font-size:11px;color:var(--muted)}
+.post-quote{
+  font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem;
+}
+.post-text{font-size:13px;color:#333;line-height:1.85;margin-bottom:1.25rem}
+.post-text strong{color:var(--black);font-weight:600}
+.post-ft{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.niche{
+  font-family:var(--bc);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;
+}
+.nh{background:#EDF9F2;color:#1E7A45}
+.nb{background:#EEF3FE;color:#2B5CE6}
+.post-type{font-size:11px;color:var(--muted)}
+
+/* ─── REVIEWS ─── */
+#reviews{background:var(--black)}
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.08)}
+@media(max-width:560px){.reviews-grid{grid-template-columns:1fr}}
+.review{
+  padding:2.5rem;
+  border-right:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.review:nth-child(2n){border-right:none}
+.rev-stars{color:var(--accent);font-size:16px;letter-spacing:2px;margin-bottom:1rem}
+.rev-q{
+  font-family:var(--pl);font-size:16px;font-weight:700;font-style:italic;
+  color:#fff;line-height:1.55;margin-bottom:1.5rem;
+}
+.rev-author{display:flex;align-items:center;gap:12px}
+.rev-av{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--bc);font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.rev-name{font-size:13px;font-weight:600;color:#fff}
+.rev-role{font-size:11px;color:rgba(255,255,255,.4)}
+
+/* ─── BIG CTA ─── */
+#cta{
+  background:var(--accent);
+  border-top:1px solid var(--black);
+}
+.cta-inner{
+  max-width:1100px;margin:0 auto;padding:5rem 2rem;
+  display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;
+}
+@media(max-width:640px){.cta-inner{grid-template-columns:1fr;gap:2rem}}
+.cta-h{font-family:var(--pl);font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--black)}
+.cta-h em{font-style:italic}
+.cta-sub{font-size:14px;color:rgba(0,0,0,.6);margin-top:1rem;line-height:1.6}
+.cta-right{display:flex;flex-direction:column;gap:12px;min-width:220px}
+.btn-big{
+  background:var(--black);color:#fff;
+  font-family:var(--bc);font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:18px 32px;border-radius:2px;text-decoration:none;
+  transition:background .2s;text-align:center;display:block;
+}
+.btn-big:hover{background:var(--accent2)}
+.btn-big-out{
+  background:transparent;color:var(--black);
+  font-family:var(--bc);font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:18px 32px;border-radius:2px;text-decoration:none;
+  border:2px solid var(--black);
+  transition:all .2s;text-align:center;display:block;
+}
+.btn-big-out:hover{background:var(--black);color:#fff}
+.cta-note{font-size:11px;color:rgba(0,0,0,.5);text-align:center}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{font-family:var(--pl);font-size:16px;font-weight:900;color:#fff}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.25);width:100%;text-align:center;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06);margin-top:.5rem}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">T<span>.</span>Tali</div>
+  <ul class="nav-links">
+    <li><a href="#carousels">Work</a></li>
+    <li><a href="#ghostwriting">Writing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="mailto:tuhinatali@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">LinkedIn Ghostwriter & Carousel Designer</div>
+    <h1 class="hero-h1">Words that<br>make people<br><em>stop scrolling.</em></h1>
+    <p class="hero-desc">I write <strong>ghostwritten LinkedIn posts</strong> and <strong>research-backed carousels</strong> for founders and organisations in global health, policy, and B2B — content that builds real authority.</p>
+    <div class="hero-btns">
+      <a href="mailto:tuhinatali@gmail.com" class="btn-main">Work with me ↗</a>
+      <a href="#carousels" class="btn-out">See my work</a>
+    </div>
+    <div class="hero-social">
+      <a href="https://www.linkedin.com/in/tuhina-tali/" target="_blank">LinkedIn</a>
+      <a href="https://substack.com/@tuhinawrites" target="_blank">Substack</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-tag-stack">
+      <span class="big-tag">Health Policy</span>
+      <span class="big-tag semi">Global Development</span>
+      <span class="big-tag active">Data Storytelling</span>
+      <span class="big-tag semi">Founder Voice</span>
+      <span class="big-tag">B2B Strategy</span>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="h-stat-n">4+</div>
+        <div class="h-stat-l">Carousels published</div>
+      </div>
+      <div>
+        <div class="h-stat-n">48h</div>
+        <div class="h-stat-l">Turnaround time</div>
+      </div>
+      <div>
+        <div class="h-stat-n">5★</div>
+        <div class="h-stat-l">Client rating</div>
+      </div>
+      <div>
+        <div class="h-stat-n">2</div>
+        <div class="h-stat-l">Niches covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>LinkedIn Ghostwriting</span><span class="dot">·</span>
+    <span>Carousel Design</span><span class="dot">·</span>
+    <span>Health Policy</span><span class="dot">·</span>
+    <span>Data Storytelling</span><span class="dot">·</span>
+    <span>Thought Leadership</span><span class="dot">·</span>
+    <span>Global Development</span><span class="dot">·</span>
+    <span>B2B Content</span><span class="dot">·</span>
+    <span>Founder Voice</span><span class="dot">·</span>
+    <span>LinkedIn Ghostwriting</span><span class="dot">·</span>
+    <span>Carousel Design</span><span class="dot">·</span>
+    <span>Health Policy</span><span class="dot">·</span>
+    <span>Data Storytelling</span><span class="dot">·</span>
+    <span>Thought Leadership</span><span class="dot">·</span>
+    <span>Global Development</span><span class="dot">·</span>
+    <span>B2B Content</span><span class="dot">·</span>
+    <span>Founder Voice</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <h2 class="sec-title">What I do</h2>
+      <span class="sec-label">Services & Pricing</span>
+    </div>
+    <div class="svcs">
+      <div class="svc">
+        <div class="svc-num">01</div>
+        <div class="svc-t">Ghostwriting</div>
+        <div class="svc-d">LinkedIn posts written entirely in your voice — hooks that stop the scroll, storytelling that builds trust, CTAs that convert followers into clients.</div>
+        <div class="svc-p">From ₹8,000 / month</div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">02</div>
+        <div class="svc-t">Carousels</div>
+        <div class="svc-d">Research-backed, visually designed carousel decks that educate your audience, get saved, and position you as the expert in your space.</div>
+        <div class="svc-p">From ₹3,500 / piece</div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">03</div>
+        <div class="svc-t">Full Package</div>
+        <div class="svc-d">Posts + carousels + content strategy. Show up every single week without spending hours writing. I handle everything.</div>
+        <div class="svc-p">From ₹20,000 / month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAROUSELS -->
+<section id="carousels">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <h2 class="sec-title">Carousel samples</h2>
+      <span class="sec-label">Swipe through each ↓</span>
+    </div>
+    <div class="car-grid">
+
+      <!-- CAROUSEL 1: Tobacco -->
+      <div class="car-item" id="car1">
+        <div class="car-label">
+          <span class="car-title-sm">India's Tobacco Tax Reform</span>
+          <span class="car-counter" id="c1-counter">1 / 5</span>
+        </div>
+        <div class="slides-wrap">
+          <div class="slides-track" id="c1-track">
+            <!-- Slide 1 -->
+            <div class="slide c1">
+              <div class="slide-inner">
+                <span class="s-eyebrow">2026 Reform</span>
+                <div class="s-head">India's tobacco tax just got its biggest overhaul in a decade.</div>
+                <div class="s-body">From 1 February 2026, India raised cigarette GST from <strong>28% to 40%</strong> — plus reimposed excise duty.<br><br>This is genuine progress. It is also incomplete.<br><br>Here is the honest assessment.</div>
+                <div class="s-source">Central Tax (Rate) Notification No. 19/2025</div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide c1">
+              <div class="slide-inner">
+                <span class="s-eyebrow">The New Structure</span>
+                <div class="s-head">Total tax burden: ~52–53% of retail price.</div>
+                <div class="s-grid">
+                  <div class="s-grid-item">
+                    <div class="s-grid-n">40%</div>
+                    <div class="s-grid-l">GST (up from 28%)</div>
+                    <div class="s-grid-d">Highest rate in India's GST structure</div>
+                  </div>
+                  <div class="s-grid-item">
+                    <div class="s-grid-n">₹2–8.5k</div>
+                    <div class="s-grid-l">Excise / 1,000 sticks</div>
+                    <div class="s-grid-d">Reimposed after a 7-year freeze</div>
+                  </div>
+                </div>
+                <div class="s-body">A stick at ₹18 will now cost ~₹21–22. Plus: RSP-based valuation for smokeless tobacco closes the under-reporting loophole.</div>
+                <div class="s-source">Source: Central Excise (Amendment) Act, 2025</div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide c1">
+              <div class="slide-inner">
+                <span class="s-eyebrow">What It Gets Right</span>
+                <div class="s-head">Three genuine wins in this reform.</div>
+                <div class="s-body">
+                  <div style="margin:.4rem 0;padding:.5rem .75rem;background:rgba(245,197,24,0.08);border-radius:4px">
+                    <span class="tick">✓</span> <strong>Price freeze broken</strong> — 7 years of real price decline corrected in one move.
+                  </div>
+                  <div style="margin:.4rem 0;padding:.5rem .75rem;background:rgba(245,197,24,0.08);border-radius:4px">
+                    <span class="tick">✓</span> <strong>First earmarking</strong> — HSSNS Cess is India's first legislative earmarking of tobacco revenue for health.
+                  </div>
+                  <div style="margin:.4rem 0;padding:.5rem .75rem;background:rgba(245,197,24,0.08);border-radius:4px">
+                    <span class="tick">✓</span> <strong>Evasion closed</strong> — Capacity-based cess ties liability to production, not declared sales.
+                  </div>
+                </div>
+                <div class="s-source">Author analysis · Central Excise Act 2025</div>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide c1">
+              <div class="slide-inner">
+                <span class="s-eyebrow">The Bidi Paradox</span>
+                <div class="s-head">The most harmful product just got a tax cut.</div>
+                <div class="compare">
+                  <div class="compare-side">
+                    <div class="compare-n" style="color:#F5C518">40%</div>
+                    <div class="compare-sub">Cigarette GST</div>
+                    <div class="compare-d">Less harmful. Urban. Higher income users.</div>
+                  </div>
+                  <div class="compare-side">
+                    <div class="compare-n" style="color:#ff6666">18%</div>
+                    <div class="compare-sub">Bidi GST (down from 28%)</div>
+                    <div class="compare-d">More harmful. Rural. Poorest 20%.</div>
+                  </div>
+                </div>
+                <div class="s-body">Bidi smoking = <strong>2.87x higher asthma risk</strong> vs 1.82x for cigarettes. <strong>2.6x higher TB mortality risk.</strong><br><br>Taxing bidis at cigarette-equivalent rates could avert up to 695,159 years of life lost.</div>
+                <div class="s-source">Jain et al. (Nicotine & Tobacco Research, 2024)</div>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="slide c1">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Net Assessment</span>
+                <div class="s-head">Right direction. Insufficient distance.</div>
+                <div class="s-body">
+                  <div style="margin:.4rem 0;padding:.6rem .75rem;background:rgba(245,197,24,0.08);border-radius:4px">
+                    <span class="pill pill-y">Achieved</span><br>Higher tax · First earmarking · Evasion compliance
+                  </div>
+                  <div style="margin:.4rem 0;padding:.6rem .75rem;background:rgba(255,68,68,0.08);border-radius:4px">
+                    <span class="pill pill-r">Still Needed</span><br>WHO 75% threshold not met · Bidi tax reduced · No independent governance
+                  </div>
+                </div>
+                <div style="margin-top:.75rem;padding:.75rem;background:rgba(245,197,24,0.1);border-radius:4px;font-size:12px;color:rgba(255,255,255,0.8)">Does the 2026 reform change your view on India's tobacco control trajectory? Share below.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="car-controls">
+          <div class="car-dots" id="c1-dots"></div>
+          <div class="car-arrows">
+            <button class="car-arr" id="c1-prev" onclick="slide('c1',-1)">←</button>
+            <button class="car-arr" id="c1-next" onclick="slide('c1',1)">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAROUSEL 2: Economic policy -->
+      <div class="car-item" id="car2">
+        <div class="car-label">
+          <span class="car-title-sm">Economic Policy is Health Policy</span>
+          <span class="car-counter" id="c2-counter">1 / 4</span>
+        </div>
+        <div class="slides-wrap">
+          <div class="slides-track" id="c2-track">
+            <div class="slide c2">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Policy</span>
+                <div class="s-head">Every economic policy is a health policy. We just pretend it's not.</div>
+                <div class="s-body">We say "health" and think: hospitals, doctors, medicines.<br><br>But most of what determines health happens <strong>long before</strong> someone reaches a clinic.<br><br>Food access, wage security, housing, social protection — these have greater bearing on life expectancy than any pill ever will.</div>
+              </div>
+            </div>
+            <div class="slide c2">
+              <div class="slide-inner">
+                <span class="s-eyebrow">The Siloed System</span>
+                <div class="s-head">We treat health as a sector. It's actually an outcome.</div>
+                <div class="silo-item"><div class="silo-t">Anaemia isn't just nutrition</div><div class="silo-d">It's food prices and the burden of unpaid care work.</div></div>
+                <div class="silo-item"><div class="silo-t">Heatstroke deaths aren't just medical</div><div class="silo-d">They reveal failures in water access, housing, and labour protection.</div></div>
+                <div class="silo-item"><div class="silo-t">Maternal deaths</div><div class="silo-d">Linked to inadequate transport, gender norms, and underpaid frontline workers.</div></div>
+                <div class="callout">These aren't exceptions. They're the system working exactly as designed: in silos.</div>
+              </div>
+            </div>
+            <div class="slide c2">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Why It Matters</span>
+                <div class="s-head">Health is where every policy accumulates.</div>
+                <div class="s-body">Good or bad. Intended or not.<br><br></div>
+                <div class="reform-item"><div class="reform-icon">💰</div><div class="reform-text"><strong>Pensions lapse</strong> → declining mental health</div></div>
+                <div class="reform-item"><div class="reform-icon">👩</div><div class="reform-text"><strong>Unpaid care work</strong> → women's health suffers</div></div>
+                <div class="reform-item"><div class="reform-icon">🌿</div><div class="reform-text"><strong>Underfunded nutrition programmes</strong> → collapse</div></div>
+                <div class="reform-item"><div class="reform-icon">🏙️</div><div class="reform-text"><strong>Ignored urban policy</strong> → infectious disease spreads</div></div>
+                <div class="callout" style="margin-top:.75rem">Policy is upstream. Health is downstream. But the circle always closes.</div>
+              </div>
+            </div>
+            <div class="slide c2">
+              <div class="slide-inner">
+                <span class="s-eyebrow">A New Question</span>
+                <div class="s-head">Stop asking "Is this a health policy?" Start asking —</div>
+                <div class="bold-q" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;font-style:italic;color:#1A3A0A;line-height:1.4;margin:1rem 0;padding-left:1rem;border-left:3px solid #8B4513">"What does this policy do to people's health?"</div>
+                <div class="s-body">If a policy increases hunger, precarity, or burnout — is it really development?<br><br>And if it protects rest, food, care, and autonomy — isn't that healthcare too?</div>
+                <div style="margin-top:auto;background:#1A3A0A;color:#fff;padding:.75rem;border-radius:4px;font-size:12px">What policy do you think shapes health the most — even though no one calls it that? 💬</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="car-controls">
+          <div class="car-dots" id="c2-dots"></div>
+          <div class="car-arrows">
+            <button class="car-arr" id="c2-prev" onclick="slide('c2',-1)">←</button>
+            <button class="car-arr" id="c2-next" onclick="slide('c2',1)">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAROUSEL 3: Vulnerable women -->
+      <div class="car-item" id="car3">
+        <div class="car-label">
+          <span class="car-title-sm">We Say "Vulnerable Women"</span>
+          <span class="car-counter" id="c3-counter">1 / 4</span>
+        </div>
+        <div class="slides-wrap">
+          <div class="slides-track" id="c3-track">
+            <div class="slide c3">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Gender & Health</span>
+                <div class="s-head">We say <em>"vulnerable women."</em><br>But it's the systems that are weak.</div>
+                <div class="s-body">"Vulnerability" isn't innate.<br><br>It's constructed — through low pay, unsafe housing, unpaid care, and systemic neglect.</div>
+              </div>
+            </div>
+            <div class="slide c3">
+              <div class="slide-inner">
+                <span class="s-eyebrow">The Language Problem</span>
+                <div class="s-head">Policy language shapes funding, programmes, and action.</div>
+                <div class="s-body">When we frame women, migrants, or the poor as "vulnerable" without asking why, we shift the lens:</div>
+                <div class="shift-row"><div class="shift-from">From structural causes</div><div class="shift-arrow">→</div><div class="shift-to">To individual traits</div></div>
+                <div class="shift-row"><div class="shift-from">From accountability</div><div class="shift-arrow">→</div><div class="shift-to">To sympathy</div></div>
+                <div class="bold-q">It lets broken systems off the hook.</div>
+              </div>
+            </div>
+            <div class="slide c3">
+              <div class="slide-inner">
+                <span class="s-eyebrow">What Needs to Change</span>
+                <div class="s-head">Design for justice. Not charity.</div>
+                <div class="action-item"><strong>01</strong> Replace deficit framing with structural analysis</div>
+                <div class="action-item"><strong>02</strong> Design with dignity and justice, not pity</div>
+                <div class="action-item"><strong>03</strong> Make systems accountable, not just individuals "resilient"</div>
+                <div class="bold-q" style="margin-top:.75rem">Vulnerability is not the problem. Power is.</div>
+              </div>
+            </div>
+            <div class="slide c3">
+              <div class="slide-inner">
+                <span class="s-eyebrow">A New Frame</span>
+                <div class="s-head">What if we rewrote our policies starting with accountability, not pity?</div>
+                <div class="s-body">Ask yourself:<br><br><strong>Who made someone vulnerable?</strong><br><br><strong>What would it take to stop that from happening again?</strong></div>
+                <div style="margin-top:auto;background:#C0392B;color:#fff;padding:.75rem;border-radius:4px;font-size:12px;line-height:1.5">Language matters. The words we choose in policy determine who we hold accountable — and who we let off the hook. 💬</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="car-controls">
+          <div class="car-dots" id="c3-dots"></div>
+          <div class="car-arrows">
+            <button class="car-arr" id="c3-prev" onclick="slide('c3',-1)">←</button>
+            <button class="car-arr" id="c3-next" onclick="slide('c3',1)">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAROUSEL 4: Health Insurance -->
+      <div class="car-item" id="car4">
+        <div class="car-label">
+          <span class="car-title-sm">India's Health Insurance Gaps</span>
+          <span class="car-counter" id="c4-counter">1 / 4</span>
+        </div>
+        <div class="slides-wrap">
+          <div class="slides-track" id="c4-track">
+            <div class="slide c4">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Health Finance</span>
+                <div class="s-head">Why India's health insurance still leaves many behind.</div>
+                <div class="stat-row">
+                  <div class="stat-box"><div class="stat-n">70%</div><div class="stat-l">healthcare costs still out-of-pocket</div></div>
+                  <div class="stat-box"><div class="stat-n">500M+</div><div class="stat-l">PM-JAY cards issued</div></div>
+                  <div class="stat-box"><div class="stat-n">₹3K+</div><div class="stat-l">spent per minute OOP by Indians</div></div>
+                </div>
+                <div class="s-body">The paradox: massive coverage on paper. Persistent catastrophic expenditure in reality.</div>
+                <div class="s-source">Source: National Health Accounts 2021–22; PM-JAY Factsheet 2024; WHO GHED 2022</div>
+              </div>
+            </div>
+            <div class="slide c4">
+              <div class="slide-inner">
+                <span class="s-eyebrow">The Illusion</span>
+                <div class="s-head">₹5 lakh cover. But what does it actually cover?</div>
+                <div class="promise-box"><div class="promise-t">Promise</div><div class="promise-d">Free ₹5 lakh inpatient cover under Ayushman Bharat for hospitalisation expenses.</div></div>
+                <div class="pitfall-box"><div class="pitfall-t">Pitfall</div><div class="pitfall-d">No coverage for OPD visits, diagnostic tests, or medicines — where most spending actually happens.</div></div>
+                <div class="bold-stat">70%</div>
+                <div class="bold-stat-sub">of total health spending still comes out-of-pocket — even with insurance</div>
+                <div class="s-source">Source: PM-JAY website; WHO Global Health Expenditure Database</div>
+              </div>
+            </div>
+            <div class="slide c4">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Rural & Gender Gaps</span>
+                <div class="s-head">The card exists. The care doesn't always.</div>
+                <div class="s-body" style="margin-bottom:.5rem">Average distance to an empanelled hospital in rural areas: <strong style="color:#4A9CF6">100 km.</strong></div>
+                <div class="s-body" style="margin-bottom:.5rem"><strong style="color:#4A9CF6">30%</strong> of eligible rural families never use their PM-JAY card despite having one.</div>
+                <div class="s-body" style="margin-bottom:.5rem">In Rajasthan, women are only <strong style="color:#4A9CF6">45%</strong> of hospitalisations under Bhamashah — despite being half the population.</div>
+                <div class="s-body"><strong style="color:#4A9CF6">400M+</strong> Indians sit in the "missing middle" — too rich for PM-JAY, too poor for private insurance.</div>
+                <div class="s-source">Source: PHFI survey 2023; NFHS-5; World Bank India Poverty Report 2023</div>
+              </div>
+            </div>
+            <div class="slide c4">
+              <div class="slide-inner">
+                <span class="s-eyebrow">Three Bold Moves</span>
+                <div class="s-head">What would actually fix this.</div>
+                <div class="move-item"><span class="move-n">01</span><span>Extend Ayushman Bharat to cover OPD, medicines, and diagnostics — where the real spending happens.</span></div>
+                <div class="move-item"><span class="move-n">02</span><span>Strict audits, penalise fraud, de-empanel facilities that deny care or game claims.</span></div>
+                <div class="move-item"><span class="move-n">03</span><span>Design a middle-tier insurance model for the 400M+ caught between public and private — and auto-enroll eligible women.</span></div>
+                <div style="margin-top:auto;background:rgba(74,156,246,0.1);border:1px solid rgba(74,156,246,0.2);border-radius:4px;padding:.75rem;font-size:12px;color:rgba(255,255,255,0.75)">Insurance is only as good as the system behind it. Beyond the card, we need care. 💬</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="car-controls">
+          <div class="car-dots" id="c4-dots"></div>
+          <div class="car-arrows">
+            <button class="car-arr" id="c4-prev" onclick="slide('c4',-1)">←</button>
+            <button class="car-arr" id="c4-next" onclick="slide('c4',1)">→</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /car-grid -->
+  </div>
+</section>
+
+<!-- GHOSTWRITING -->
+<section id="ghostwriting">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <h2 class="sec-title">Ghostwriting samples</h2>
+      <span class="sec-label">Written in founder voice</span>
+    </div>
+    <div class="posts">
+      <div class="post p1">
+        <div class="post-persona">
+          <div class="av" style="background:#FF4D2E">RV</div>
+          <div>
+            <div class="pi-name">Rohan Verma</div>
+            <div class="pi-role">Co-founder, HealthTech startup</div>
+          </div>
+        </div>
+        <div class="post-quote">Ghostwritten post ·</div>
+        <div class="post-text">
+          We got into 3 accelerators before we had a single paying user.<br><br>
+          Investors loved the pitch. The problem was real. The team was strong.<br><br>
+          But we were building for the grant cycle, not for the patient.<br><br>
+          <strong>The moment we stopped optimising for applause, we actually shipped something that worked.</strong><br><br>
+          The hardest pivot isn't your product. It's your incentive structure.
+        </div>
+        <div class="post-ft">
+          <span class="niche nh">Global Health</span>
+          <span class="post-type">Founder story · Hook post</span>
+        </div>
+      </div>
+
+      <div class="post p2">
+        <div class="post-persona">
+          <div class="av" style="background:#4A9CF6">SM</div>
+          <div>
+            <div class="pi-name">Shruti Menon</div>
+            <div class="pi-role">Head of Policy, International NGO</div>
+          </div>
+        </div>
+        <div class="post-quote">Ghostwritten post ·</div>
+        <div class="post-text">
+          We write "vulnerable communities" in every proposal.<br><br>
+          We never ask: vulnerable to what? Built by whom?<br><br>
+          Language isn't neutral. When we describe people as inherently fragile, we design programmes that treat symptoms — not systems.<br><br>
+          <strong>The most radical thing a health researcher can do is name what's actually breaking people.</strong><br><br>
+          Not the people themselves.
+        </div>
+        <div class="post-ft">
+          <span class="niche nh">Health Policy</span>
+          <span class="post-type">Thought leadership · Sharp take</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="sec-wrap">
+    <div class="sec-header" style="border-bottom-color:rgba(255,255,255,.1)">
+      <h2 class="sec-title" style="color:#fff">What clients say</h2>
+      <span class="sec-label" style="color:rgba(255,255,255,.4)">Reviews</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-q">"Tuhina understood the nuance of health policy instantly — the carousel she built on tobacco taxation had more rigour than most reports I've read. Our engagement tripled that week."</div>
+        <div class="rev-author">
+          <div class="rev-av" style="background:#3DBE7A">AK</div>
+          <div>
+            <div class="rev-name">Ananya Kumar</div>
+            <div class="rev-role">Senior Researcher, Public Health Foundation</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-q">"She wrote in my voice better than I do. Gave me 4 posts, all backed with data, all ready to publish. The kind of writer you don't want other people to know about."</div>
+        <div class="rev-author">
+          <div class="rev-av" style="background:#9B6DFF">DS</div>
+          <div>
+            <div class="rev-name">Dev Sharma</div>
+            <div class="rev-role">Founder, B2B SaaS · Series A</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-h">Ready to show up on LinkedIn <em>every week?</em></h2>
+      <p class="cta-sub">Health policy, global development, B2B — I write content that builds real authority. Let's talk.</p>
+    </div>
+    <div class="cta-right">
+      <a href="mailto:tuhinatali@gmail.com" class="btn-big">Email me ↗</a>
+      <a href="https://www.linkedin.com/in/tuhina-tali/" target="_blank" class="btn-big-out">LinkedIn ↗</a>
+      <span class="cta-note">Typically reply within 24h</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">T<span>.</span>Tali</div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/tuhina-tali/" target="_blank">LinkedIn</a>
+    <a href="https://substack.com/@tuhinawrites" target="_blank">Substack</a>
+    <a href="mailto:tuhinatali@gmail.com">Email</a>
+  </div>
+  <div class="footer-copy">© 2025 Tuhina Tali · LinkedIn Ghostwriter & Carousel Designer</div>
+</footer>
+
+<script>
+const carousels = {
+  c1: { total: 5, current: 0 },
+  c2: { total: 4, current: 0 },
+  c3: { total: 4, current: 0 },
+  c4: { total: 4, current: 0 },
+};
+
+function initDots() {
+  Object.keys(carousels).forEach(id => {
+    const c = carousels[id];
+    const dotsEl = document.getElementById(id + '-dots');
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < c.total; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' on' : '');
+      d.onclick = () => goTo(id, i);
+      dotsEl.appendChild(d);
+    }
+    updateControls(id);
+  });
+}
+
+function goTo(id, index) {
+  const c = carousels[id];
+  c.current = index;
+  const track = document.getElementById(id + '-track');
+  track.style.transform = `translateX(-${index * 100}%)`;
+  updateControls(id);
+}
+
+function slide(id, dir) {
+  const c = carousels[id];
+  const next = c.current + dir;
+  if (next < 0 || next >= c.total) return;
+  goTo(id, next);
+}
+
+function updateControls(id) {
+  const c = carousels[id];
+  const dots = document.querySelectorAll(`#${id}-dots .dot`);
+  dots.forEach((d, i) => d.classList.toggle('on', i === c.current));
+  document.getElementById(id + '-counter').textContent = `${c.current + 1} / ${c.total}`;
+  document.getElementById(id + '-prev').disabled = c.current === 0;
+  document.getElementById(id + '-next').disabled = c.current === c.total - 1;
+}
+
+// Touch/swipe support
+function addSwipe(id) {
+  const wrap = document.querySelector(`#car${id.slice(1)} .slides-wrap`);
+  let startX = 0;
+  wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) slide(id, diff > 0 ? 1 : -1);
+  }, { passive: true });
+}
+
+initDots();
+['c1','c2','c3','c4'].forEach(addSwipe);
+</script>
+</body>
+</html>
